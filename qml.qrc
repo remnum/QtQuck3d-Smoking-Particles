@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Fire.qml</file>
+        <file>RectSlider.qml</file>
+        <file>images/glowdot.png</file>
+    </qresource>
+</RCC>
