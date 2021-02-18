@@ -5,7 +5,8 @@ import QtQuick.Timeline
 Model{
     id:rOOT
     function startAnime(){
-        anime.start()
+        position =tracerObject.scenePosition
+        anime.restart()
     }
     property Node tracerObject: undefined
 
@@ -36,7 +37,7 @@ Model{
         NumberAnimation { target: rOOT; property: "opacity";from: 0.8; to:0 ; duration: 500}
         onFinished:{
             position =tracerObject.scenePosition
-            start()
+            restart()
         }
     }
 }
