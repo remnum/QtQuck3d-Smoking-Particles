@@ -1,10 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Fire.qml</file>
+        <file>FireTimeLine.qml</file>
         <file>RectSlider.qml</file>
         <file>images/glowdot.png</file>
         <file>comCreation.js</file>
         <file>Cube.qml</file>
+        <file>FireAnimation.qml</file>
     </qresource>
 </RCC>

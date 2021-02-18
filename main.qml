@@ -19,6 +19,7 @@ Window {
     visible: true
     color: "#000000"
     property int count:0
+    property var smoking_objs : []
 
     View3D {
         id: view3D
@@ -73,12 +74,7 @@ Window {
             //                loops: Animation.Infinite
             //            }
         }
-        Fire{
 
-        }
-        Fire{
-
-        }
 
     }
 
@@ -100,18 +96,18 @@ Window {
             }
         ]
         keyframeGroups: [
-          KeyframeGroup {
-            target: particlesSource
-            property: "eulerRotation.y"
-            Keyframe { frame: 0; value: 0 }
-            Keyframe { frame: 25; value: 90 }
-            Keyframe { frame: 50; value: 180 }
-            Keyframe { frame: 75; value: 270 }
-            Keyframe { frame: 100; value: 360 }
-          }
+            KeyframeGroup {
+                target: particlesSource
+                property: "eulerRotation.y"
+                Keyframe { frame: 0; value: 0 }
+                Keyframe { frame: 25; value: 90 }
+                Keyframe { frame: 50; value: 180 }
+                Keyframe { frame: 75; value: 270 }
+                Keyframe { frame: 100; value: 360 }
+            }
         ]
-
     }
+
     Button{
         width: 100
         height: 30
@@ -119,36 +115,30 @@ Window {
         anchors.top: parent.top
         text: "start"
         onClicked: {
-            anime.start()
+
         }
     }
 
+    Component.onCompleted: {
+        for(var i =0 ;i < 200 ;i ++) {
+        var newObject =  Qt.createQmlObject("FireAnimation{tracerObject:particlesSource;position:particlesSource.scenePosition;}"
+                                            ,view3D.scene,"particle_"+count);
+        smoking_objs.push(newObject)
+        }
+    }
 
-
-    //    Timer{
-    //        interval: slider_timer.value
-    //        repeat: true
-    //        running: true
-    //        onTriggered: {
-    //            //  fire.anime_start()
-
-    //            //MyScript.createSpriteObjects(view3D.scene,slider_particles.value)
-    //            //var component
-    //            //            for(var i = 0 ;i < slider_particles.value;i++){
-    //            //                 component = Qt.createComponent("Fire.qml");
-    //            //                var incubator = component.incubateObject(view3D.scene, { position:particlesSource.scenePosition });
-    //            //                incubator.destroy(5000);
-    //            //            }
-
-    ////            for(var i = 0 ;i < slider_particles.value;i++){
-    ////               // var component = Qt.createComponent("Fire.qml");
-    ////               // var incubator = component.incubateObject(view3D.scene, { position:particlesSource.scenePosition });
-    ////                var newObject =  Qt.createQmlObject("Fire{position:particlesSource.scenePosition;}"
-    ////                                                    ,view3D.scene,"particle_"+count);
-    ////             //   component.destroy(2000);
-    ////            }
-    //        }
-    //    }
+    Timer{
+        interval: slider_timer.value
+        repeat: true
+        running: true
+        onTriggered: {
+            smoking_objs[count*2].startAnime()
+            smoking_objs[count*2+1].startAnime()
+            count ++ ;
+            if(count == 100)
+                count =0;
+        }
+    }
 
     DebugView{
         source: view3D
