@@ -29,12 +29,11 @@ Model{
         id:anime
         running: false
         loops: 1
-        NumberAnimation { target: rOOT; property: "x";from: position.x; to: position.x +Math.floor(Math.random() * 40)-20; duration: 1000 }
-        NumberAnimation { target: rOOT; property: "y";from: position.y; to: position.y +Math.floor(Math.random() * 120); duration: 1000 }
-        NumberAnimation { target: rOOT; property: "z";from: position.z; to: position.z+Math.floor(Math.random() * 40)-20 ; duration: 1000 }
-        NumberAnimation { target: rOOT; property: "eulerRotation.x";from: 0; to:180 ; duration: 1000 }
-        NumberAnimation { target: rOOT; property: "opacity";from: 0.5; to:0 ; duration: 1000
-        }
+        NumberAnimation { target: rOOT; property: "x";from: position.x; to: position.x +Math.floor(Math.random() * 40)-20; duration: 500 }
+        NumberAnimation { target: rOOT; property: "y";from: position.y; to: position.y +Math.floor(Math.random() * 10); duration: 500 }
+        NumberAnimation { target: rOOT; property: "z";from: position.z; to: position.z+Math.floor(Math.random() * 40)-20 ; duration: 500 }
+        NumberAnimation { target: rOOT; property: "eulerRotation.x";from: 0; to:180 ; duration: 500 }
+        NumberAnimation { target: rOOT; property: "opacity";from: 0.8; to:0 ; duration: 500}
         onFinished:{
             position =tracerObject.scenePosition
             start()
